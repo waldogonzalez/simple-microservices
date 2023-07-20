@@ -7,6 +7,11 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-gfssxut6umtmxv1f.us.auth0.com/
 
 #logging.level.org.springframework.web: DEBUG
 logging.level.org.springframework.cloud.gateway: DEBUG
@@ -15,6 +20,8 @@ eureka:
   client:
     service-url:
       - defaultZone: http://eureka:password@localhost:8761/eureka
+auth0:
+  audience: www.rafi.cl
 app:
   eureka-server: localhost
 
