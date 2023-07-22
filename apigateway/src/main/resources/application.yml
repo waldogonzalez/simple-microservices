@@ -14,7 +14,7 @@ spring:
           issuer-uri: https://dev-gfssxut6umtmxv1f.us.auth0.com/
 
 #logging.level.org.springframework.web: DEBUG
-logging.level.org.springframework.cloud.gateway: DEBUG
+#logging.level.org.springframework.cloud.gateway: DEBUG
 
 eureka:
   client:
@@ -24,6 +24,20 @@ auth0:
   audience: www.rafi.cl
 app:
   eureka-server: localhost
+
+springdoc:
+  enable-native-support: true
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
+    config-url: /api-docs/swagger-config
+    urls:
+      - url: /api-docs
+        name: API Gateway Service
+      - url: /service-one/api-docs
+        name: Service One
 
 server:
   port: 8080

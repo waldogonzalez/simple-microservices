@@ -24,6 +24,10 @@ public class UserController {
         users.add(new User("operator", "operator", 3L));
     }
 
+    /**
+     * Get all users
+     * @return List with all users
+     */
     @GetMapping
     public List<User> getAll() {
         return users;
