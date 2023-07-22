@@ -31,13 +31,11 @@ springdoc:
     enabled: true
   swagger-ui:
     enabled: true
-    path: /swagger-ui.html
-    config-url: /api-docs/swagger-config
     urls:
-      - url: /api-docs
-        name: API Gateway Service
-      - url: /service-one/api-docs
+      - url: /service-one/v3/api-docs
         name: Service One
-
+        primaryName: Service One
 server:
   port: 8080
+build:
+  version: @project.version@

@@ -1,6 +1,5 @@
 package com.krah.spik.config;
 
-import jakarta.ws.rs.HttpMethod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,14 +28,16 @@ public class SecurityConfiguration {
 
     @Bean
     public SecurityWebFilterChain filterChain(ServerHttpSecurity http) throws Exception {
-        log.info("entra security");
         http.cors().configurationSource(request -> {
-                    CorsConfiguration configuration = new CorsConfiguration();
-                    configuration.setAllowedOrigins(List.of("*"));
-                    configuration.setAllowedMethods(List.of("*"));
-                    configuration.setAllowedHeaders(List.of("*"));
-                    return configuration;
-                }).and().csrf().disable().oauth2ResourceServer().jwt();
+            CorsConfiguration configuration = new CorsConfiguration();
+            configuration.setAllowedOrigins(List.of("*"));
+            configuration.setAllowedMethods(List.of("*"));
+            configuration.setAllowedHeaders(List.of("*"));
+            return configuration;
+        }).and().csrf().disable();
+        http.authorizeExchange().pathMatchers("/", "/v3/api-docs", "/v3/api-docs/**",
+                "/service-one/v3/api-docs/**", "/configuration/ui", "/swagger-resources/**",
+                "/configuration/security", "/swagger-ui.html", "/webjars/**").permitAll().anyExchange().authenticated().and().oauth2ResourceServer().jwt();
         return http.build();
     }
 
